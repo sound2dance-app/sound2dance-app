@@ -1,0 +1,136 @@
+.sliders-section {
+  margin-bottom: 25px;
+  max-height: 350px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.sliders-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.slider-group {
+  margin-bottom: 20px;
+}
+
+.slider-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.dance-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dance-emoji {
+  font-size: 16px;
+}
+
+.dance-value {
+  font-size: 14px;
+  font-weight: bold;
+  color: #667eea;
+  min-width: 40px;
+  text-align: right;
+}
+
+.slider-input {
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: #e0e0e0;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+.slider-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(102, 126, 234, 0.4);
+  transition: all 0.2s;
+}
+
+.slider-input::-webkit-slider-thumb:hover {
+  width: 20px;
+  height: 20px;
+  box-shadow: 0 4px 10px rgba(102, 126, 234, 0.6);
+}
+
+.slider-input::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 5px rgba(102, 126, 234, 0.4);
+  transition: all 0.2s;
+}
+
+.slider-input::-moz-range-thumb:hover {
+  width: 20px;
+  height: 20px;
+  box-shadow: 0 4px 10px rgba(102, 126, 234, 0.6);
+}
+
+.slider-input::-moz-range-track {
+  background: transparent;
+  border: none;
+}
+
+.slider-input::-moz-range-progress {
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  height: 6px;
+  border-radius: 3px;
+}
+
+/* Scrollbar for sliders section */
+.sliders-section::-webkit-scrollbar {
+  width: 4px;
+}
+
+.sliders-section::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.sliders-section::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 10px;
+}
+
+.sliders-section::-webkit-scrollbar-thumb:hover {
+  background: #ccc;
+}
+
+@media (max-width: 500px) {
+  .sliders-section {
+    max-height: 300px;
+  }
+
+  .slider-group {
+    margin-bottom: 18px;
+  }
+
+  .dance-name {
+    font-size: 13px;
+  }
+}

@@ -1,0 +1,70 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 20px;
+}
+
+.stats {
+  display: flex;
+  gap: 20px;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 24px;
+  font-weight: bold;
+  color: #667eea;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #999;
+  margin-top: 5px;
+}
+
+.streak {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff3e0;
+  padding: 10px 15px;
+  border-radius: 10px;
+}
+
+.streak-flame {
+  font-size: 24px;
+  animation: flicker 1s infinite;
+}
+
+@keyframes flicker {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.streak-text {
+  font-weight: bold;
+  color: #f57c00;
+  font-size: 14px;
+}
+
+@media (max-width: 500px) {
+  .header {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .stats {
+    width: 100%;
+    justify-content: space-around;
+  }
+}
