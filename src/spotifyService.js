@@ -76,7 +76,9 @@ export const spotifyService = {
   // Get songs from playlist
   getPlaylistTracks: async (playlistId, token) => {
     const tracks = [];
-    let url = `https://api.spotify.com/v1/playlists/${playlistId}/tracks?limit=50`;
+    // Spotify removed GET /playlists/{id}/tracks for Development Mode apps
+    // in Feb 2026 (403 Forbidden) - use /items instead, same response shape.
+    let url = `https://api.spotify.com/v1/playlists/${playlistId}/items?limit=50`;
 
     while (url) {
       const response = await fetch(url, {
