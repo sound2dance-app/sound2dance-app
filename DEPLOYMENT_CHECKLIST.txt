@@ -1,0 +1,142 @@
+================================================================================
+SOUND2DANCE-APP: DEPLOYMENT CHECKLIST
+================================================================================
+
+STATUS (2026-10-12)
+✅ Code vorbereitet
+✅ Git Repo initialisiert in /tmp/sound2dance-app/
+✅ First commit gemacht (32 files, 2966 insertions)
+✅ .env.local erstellt mit Spotify Secrets
+✅ .gitignore schützt .env.local (wird NICHT gepusht)
+⏳ GitHub Repo Erstellung (MANUELL)
+⏳ Code zu GitHub pushen (MANUELL)
+⏳ Vercel Deployment (MANUELL)
+
+================================================================================
+SCHRITT 1: GitHub Repo erstellen (MANUELL via Web)
+================================================================================
+
+1. Öffne: https://github.com/new
+2. Fülle aus:
+   - Repository name: sound2dance-app
+   - Description: Dance Recognizer Labeling Tool - Rate music by dance type for ML training
+   - Visibility: Private (wegen API Keys!)
+   - ❌ NICHT "Initialize this repository with" anhaken
+3. Klick "Create repository"
+4. Du wirst zu einer leeren Repo weitergeleitet mit Setup-Anweisungen
+
+================================================================================
+SCHRITT 2: Code zu GitHub pushen (TERMINAL)
+================================================================================
+
+Führe diese Befehle aus:
+
+cd /tmp/sound2dance-app
+
+# Remote hinzufügen (GitHub zeigt die URL auf der Seite)
+git remote add origin https://github.com/sound2dance-app/sound2dance-app.git
+
+# Alternativ mit SSH (falls du SSH-Key setup hast):
+# git remote add origin git@github.com:sound2dance-app/sound2dance-app.git
+
+# Zu GitHub pushen
+git branch -M main
+git push -u origin main
+
+# Das wird dich evtl. um GitHub login bitten (Web Browser popup)
+
+================================================================================
+SCHRITT 3: Vercel Deployment (MANUELL via Web)
+================================================================================
+
+1. Gehe zu: https://vercel.com/dashboard
+   (Melde dich an falls nötig)
+
+2. Klick "Add New" → "Project"
+
+3. "Import Git Repository"
+   - Autorisiere GitHub falls gefragt (OAuth)
+   - Wähle "sound2dance-app" aus der Liste
+
+4. Import Settings:
+   - Framework Preset: Vite (sollte auto-erkannt sein)
+   - Root Directory: . (default)
+   - Build Command: npm run build (default)
+   - Output Directory: dist (default)
+
+5. ENVIRONMENT VARIABLES hinzufügen:
+   Klick "Environment Variables" und add:
+
+   Name: VITE_SPOTIFY_CLIENT_ID
+   Value: 422fdf951d294a9b8102792c47b1ac6c
+
+   Name: VITE_SPOTIFY_CLIENT_SECRET
+   Value: 2c7887fa5caa4003b1fe496e0874871c
+
+   Name: VITE_SPOTIFY_REDIRECT_URI
+   Value: https://sound2dance-app.vercel.app/callback
+
+6. Klick "Deploy" Button
+
+7. Warte auf Build completion (2-3 Minuten)
+   - Du siehst Build-Log in Echtzeit
+   - Vergrünt = erfolgreich
+
+8. Nach erfolgreichem Deploy:
+   - Copy die Live-URL (z.B. https://sound2dance-app.vercel.app)
+   - Test die App in Browser
+
+================================================================================
+SCHRITT 4: Validierung
+================================================================================
+
+Nach erfolgreichen Deploy:
+
+1. Öffne die Live-URL im Browser
+2. Login mit Email oder Anonymous
+3. Starte einen Song mit "Play Song" Button
+4. Teste die Schieberegler
+5. Submit ein Rating
+6. Prüfe ob nächster Song lädt
+
+Falls etwas nicht funktioniert:
+- Prüfe Vercel Dashboard → Deployments → Latest Build Logs
+- Falls Build fehlgeschlagen ist, schau die Fehler an und fix lokal
+- Dann `git push` um neu zu deployen
+
+================================================================================
+LIVE URLS (nach erfolgreichen Deploy)
+================================================================================
+
+GitHub: https://github.com/sound2dance-app/sound2dance-app
+Vercel: https://sound2dance-app.vercel.app (wird angezeigt nach Deploy)
+
+================================================================================
+WICHTIGE NOTES
+================================================================================
+
+✓ .env.local bleibt LOKAL (nicht gepusht, in .gitignore)
+✓ GitHub Repo auf PRIVATE setzen (wegen Spotify Secrets in Code!)
+✓ Vercel hat die Secrets in Dashboard (sichere Umgebung)
+✓ Auto-Deploy aktiv: Jedes Mal wenn du `git push` machst, auto-deployt Vercel
+✓ Alle Secrets sind nur in Vercel Dashboard, nie in Code committed
+
+================================================================================
+NÄCHSTE SCHRITTE NACH DEPLOYMENT
+================================================================================
+
+1. Christoph testet die App 10-15 Min
+2. Sammelt erste Ratings (50+ pro Session ist gut)
+3. Feedback geben ob Gamification/UI passt
+4. Regelmäßig (30-60 Min/Tag) Songs bewerten
+5. Nach 100-200 Songs: ML-Modell trainieren
+
+================================================================================
+FRAGEN?
+================================================================================
+
+Falls etwas unklar ist oder nicht funktioniert:
+- Schau die Deployment-Docs im Repo: /DEPLOYMENT.md
+- Check Vercel Build Logs
+- Schreib in Daily Notes was nicht funktioniert
+

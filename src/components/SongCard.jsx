@@ -24,32 +24,34 @@ function SongCard({ song }) {
 
   return (
     <div className="song-card">
-      <div className="song-image-container">
-        {song.imageUrl ? (
-          <img
-            src={song.imageUrl}
-            alt={song.title}
-            className="song-image"
-          />
-        ) : (
-          <div className="song-image-placeholder">
-            <span>🎵</span>
-          </div>
-        )}
-      </div>
+      <div className="song-card-row">
+        <div className="song-image-container">
+          {song.imageUrl ? (
+            <img
+              src={song.imageUrl}
+              alt={song.title}
+              className="song-image"
+            />
+          ) : (
+            <div className="song-image-placeholder">
+              <span>🎵</span>
+            </div>
+          )}
+        </div>
 
-      <div className="song-info">
-        <div className="song-title">{song.title}</div>
-        <div className="song-artist">{song.artist}</div>
-      </div>
+        <div className="song-info">
+          <div className="song-title">{song.title}</div>
+          <div className="song-artist">{song.artist}</div>
+        </div>
 
-      <button
-        onClick={handlePlayClick}
-        className={`play-button ${isPlaying ? 'playing' : ''}`}
-        disabled={isPlaying}
-      >
-        {isPlaying ? '▶ Playing...' : '▶ Open in Spotify'}
-      </button>
+        <button
+          onClick={handlePlayClick}
+          className={`play-button ${isPlaying ? 'playing' : ''}`}
+          disabled={isPlaying}
+        >
+          {isPlaying ? '▶ ...' : '▶ Spotify'}
+        </button>
+      </div>
 
       {error && <div className="play-error">{error}</div>}
     </div>

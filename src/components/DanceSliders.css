@@ -1,55 +1,58 @@
 .sliders-section {
-  margin-bottom: 25px;
-  max-height: 350px;
-  overflow-y: auto;
-  padding-right: 8px;
+  margin-bottom: 14px;
 }
 
 .sliders-title {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
   color: #333;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   text-align: center;
 }
 
+.dance-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 16px;
+}
+
 .slider-group {
-  margin-bottom: 16px;
+  margin-bottom: 0;
 }
 
 .slider-label {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
 .dance-name {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
   color: #333;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 5px;
 }
 
 .dance-emoji {
-  font-size: 16px;
+  font-size: 13px;
 }
 
 .percent-buttons {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
+  gap: 4px;
 }
 
 .percent-button {
-  padding: 10px 0;
-  border: 2px solid #e0e0e0;
-  border-radius: 10px;
+  padding: 5px 0;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 7px;
   background: white;
   color: #666;
-  font-size: 14px;
+  font-size: 11px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.15s ease;
@@ -68,39 +71,17 @@
   background: linear-gradient(135deg, #667eea, #764ba2);
   border-color: transparent;
   color: white;
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 2px 6px rgba(102, 126, 234, 0.4);
 }
 
 .percent-button-active:hover {
   color: white;
 }
 
-/* Scrollbar for sliders section */
-.sliders-section::-webkit-scrollbar {
-  width: 4px;
-}
-
-.sliders-section::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 10px;
-}
-
-.sliders-section::-webkit-scrollbar-thumb {
-  background: #ddd;
-  border-radius: 10px;
-}
-
-.sliders-section::-webkit-scrollbar-thumb:hover {
-  background: #ccc;
-}
-
 @media (max-width: 500px) {
-  .sliders-section {
-    max-height: 300px;
-  }
-
-  .slider-group {
-    margin-bottom: 14px;
+  .dance-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
   }
 
   .dance-name {
@@ -108,7 +89,7 @@
   }
 
   .percent-button {
-    padding: 8px 0;
-    font-size: 13px;
+    padding: 7px 0;
+    font-size: 12px;
   }
 }
