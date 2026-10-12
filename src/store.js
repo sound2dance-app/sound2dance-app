@@ -70,6 +70,18 @@ export const useStore = create((set, get) => ({
   setCurrentSongIndex: (index) => set({ currentSongIndex: index }),
   setIsPlaying: (playing) => set({ isPlaying: playing }),
 
+  // Hydrate ratings + progress from Firebase after login, so stats carry
+  // over across devices/sessions instead of restarting at 0 every time.
+  hydrateFromFirebase: (ratings, progress) => set({
+    ratings: ratings || {},
+    totalSongsRated: ratings ? Object.keys(ratings).length : 0,
+    userLevel: progress?.level ?? 1,
+    userPoints: progress?.points ?? 0,
+    streakDays: progress?.streak ?? 0,
+    achievements: progress?.achievements ?? [],
+    lastRatingDate: progress?.lastUpdated ?? null
+  }),
+
   // Save ratings for current song
   rateCurrentSong: (danceRatings) => set((state) => {
     if (!state.currentSong) return state;

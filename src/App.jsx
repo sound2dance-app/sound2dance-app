@@ -18,7 +18,8 @@ function App() {
     setSpotifyToken,
     setSongs,
     setCurrentSongIndex,
-    setCurrentSong
+    setCurrentSong,
+    hydrateFromFirebase
   } = useStore();
 
   const [loading, setLoading] = useState(true);
@@ -26,15 +27,27 @@ function App() {
 
   // Initialize auth state
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
         setUser(user);
+        // Load existing progress/ratings from Firebase so stats (songs
+        // rated, level, points, streak) carry over across devices/sessions
+        // instead of restarting at 0 on every new login.
+        try {
+          const [ratings, progress] = await Promise.all([
+            firebaseService.getUserRatings(user.uid),
+            firebaseService.getUserProgress(user.uid)
+          ]);
+          hydrateFromFirebase(ratings, progress);
+        } catch (err) {
+          console.error('Error hydrating progress from Firebase:', err);
+        }
       }
       setLoading(false);
     });
 
     return unsubscribe;
-  }, [setUser]);
+  }, [setUser, hydrateFromFirebase]);
 
   // Handle Spotify callback
   useEffect(() => {
