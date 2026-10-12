@@ -119,6 +119,12 @@ function LabelingScreen() {
     previousSong();
   };
 
+  const handleSkip = () => {
+    // Skip without saving a rating - just move to the next song.
+    setError('');
+    nextSong();
+  };
+
   if (!currentSong) {
     return <div className="labeling-screen">No songs loaded</div>;
   }
@@ -166,6 +172,7 @@ function LabelingScreen() {
 
         <ActionButtons
           onPrevious={handlePrevious}
+          onSkip={handleSkip}
           onSaveAndNext={handleSaveAndNext}
           isPrevDisabled={currentSongIndex === 0}
           isSaving={saving}

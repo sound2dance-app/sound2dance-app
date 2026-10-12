@@ -65,11 +65,11 @@
 
 @media (max-width: 500px) {
   .button-group {
-    gap: 8px;
+    gap: 6px;
   }
 
   .btn {
-    padding: 10px;
-    font-size: 13px;
+    padding: 9px 4px;
+    font-size: 12px;
   }
 }

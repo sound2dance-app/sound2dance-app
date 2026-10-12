@@ -2,6 +2,7 @@ import './ActionButtons.css';
 
 function ActionButtons({
   onPrevious,
+  onSkip,
   onSaveAndNext,
   isPrevDisabled,
   isSaving,
@@ -15,6 +16,13 @@ function ActionButtons({
         disabled={isPrevDisabled || isSaving}
       >
         ← Back
+      </button>
+      <button
+        onClick={onSkip}
+        className="btn btn-secondary"
+        disabled={isSaving}
+      >
+        Skip →
       </button>
       <button
         onClick={onSaveAndNext}

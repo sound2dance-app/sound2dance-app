@@ -13,7 +13,8 @@ const DANCES = [
   { id: 'jive', name: 'Jive', emoji: '🎉' },
   { id: 'salsa', name: 'Salsa', emoji: '🔥' },
   { id: 'bachata', name: 'Bachata', emoji: '💕' },
-  { id: 'discofox', name: 'Discofox', emoji: '🎵' }
+  { id: 'discofox', name: 'Discofox', emoji: '🎵' },
+  { id: 'kizomba', name: 'Kizomba', emoji: '🌙' }
 ];
 
 const SPOTIFY_PLAYLISTS = {
