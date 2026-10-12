@@ -6,7 +6,8 @@ const SCOPES = [
   'streaming',
   'user-read-playback-state',
   'user-modify-playback-state',
-  'playlist-read-public'
+  'playlist-read-public',
+  'playlist-read-private'
 ];
 
 export const spotifyService = {
