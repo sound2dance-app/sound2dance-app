@@ -28,7 +28,7 @@ const SPOTIFY_PLAYLISTS = {
   paso_doble: '3hXbxZHmxHieC6brv7I8cB',
   jive: '7IRusSZlnJ7ZmfMvY1vbhr',
   salsa: '3KhzObBmBS7eLXo48y4hlu',
-  bachata: '43W0ZgodxBSUaoco73algU',
+  bachata: '3vjCys8imzRF0YLoIoWff3',
   discofox: '3EkpH3nGoTH1y3Cul7T4sf'
 };
 
