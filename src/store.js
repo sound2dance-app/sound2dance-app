@@ -25,11 +25,11 @@ const SPOTIFY_PLAYLISTS = {
   cha_cha: '3HLswY1mCUfjqiauZa3ODL',
   samba: '39NUoCLh3Mp0PuzfDCfXpH',
   rumba: '00OCAeX0ShoZw1SCN2pjPI',
-  paso_doble: '3hXbxZHmxHieC6brv7I8cB',
+  paso_doble: '541uhj4TYPxxUArtXiSpjG',
   jive: '7IRusSZlnJ7ZmfMvY1vbhr',
   salsa: '3KhzObBmBS7eLXo48y4hlu',
   bachata: '3vjCys8imzRF0YLoIoWff3',
-  discofox: '3EkpH3nGoTH1y3Cul7T4sf'
+  discofox: '3p3CDS8r2rFxNihAnJemwE'
 };
 
 export const useStore = create((set, get) => ({
