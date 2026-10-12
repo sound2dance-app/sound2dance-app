@@ -79,19 +79,42 @@ export const spotifyService = {
     // Spotify removed GET /playlists/{id}/tracks for Development Mode apps
     // in Feb 2026 (403 Forbidden) - use /items instead, same response shape.
     let url = `https://api.spotify.com/v1/playlists/${playlistId}/items?limit=50`;
+    let page = 0;
+    const MAX_PAGES = 30; // safety cap - a runaway 'next' pointer must not hang forever
 
     while (url) {
-      const response = await fetch(url, {
-        headers: {
-          'Authorization': `Bearer ${token}`
+      page += 1;
+      console.log(`[spotify] ${playlistId} page ${page}: fetching ${url}`);
+      if (page > MAX_PAGES) {
+        console.error(`[spotify] ${playlistId}: exceeded ${MAX_PAGES} pages, aborting pagination`);
+        break;
+      }
+
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 15000);
+      let response;
+      try {
+        response = await fetch(url, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          },
+          signal: controller.signal
+        });
+      } catch (err) {
+        clearTimeout(timeoutId);
+        if (err.name === 'AbortError') {
+          throw new Error(`Timed out after 15s fetching page ${page} of playlist ${playlistId}`);
         }
-      });
+        throw err;
+      }
+      clearTimeout(timeoutId);
 
       if (!response.ok) {
         throw new Error(`Failed to get playlist tracks: ${response.statusText}`);
       }
 
       const data = await response.json();
+      console.log(`[spotify] ${playlistId} page ${page}: got ${data.items?.length ?? 0} items, next=${data.next}`);
 
       // Extract track info
       data.items.forEach(item => {
@@ -111,6 +134,7 @@ export const spotifyService = {
       url = data.next || null;
     }
 
+    console.log(`[spotify] ${playlistId}: done, ${tracks.length} tracks total`);
     return tracks;
   },
 
@@ -119,13 +143,16 @@ export const spotifyService = {
     const allTracks = {};
 
     for (const [danceId, playlistId] of Object.entries(playlistIds)) {
+      console.log(`[spotify] starting playlist ${danceId} (${playlistId})`);
       try {
         allTracks[danceId] = await spotifyService.getPlaylistTracks(playlistId, token);
+        console.log(`[spotify] finished playlist ${danceId}: ${allTracks[danceId].length} tracks`);
       } catch (error) {
         console.error(`Error loading playlist ${danceId}:`, error);
         allTracks[danceId] = [];
       }
     }
+    console.log('[spotify] all playlists done', Object.keys(allTracks).length);
 
     return allTracks;
   },

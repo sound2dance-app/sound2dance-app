@@ -72,11 +72,16 @@ function App() {
 
       // Get unique songs
       const uniqueSongs = spotifyService.getUniqueSongs(playlistTracks);
+      console.log('[app] total unique songs loaded:', uniqueSongs.length, playlistTracks);
       setSongs(uniqueSongs);
 
       if (uniqueSongs.length > 0) {
         setCurrentSong(uniqueSongs[0]);
         setCurrentSongIndex(0);
+      } else {
+        // Loading finished but nothing came back - surface this distinctly
+        // instead of silently looking identical to "still loading" forever.
+        setError('Alle Playlists wurden geladen, aber 0 Songs gefunden. Prüf die Konsole (Browser-Devtools) für Details pro Playlist.');
       }
 
       // Clean up URL
