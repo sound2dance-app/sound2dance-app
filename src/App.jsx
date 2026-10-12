@@ -116,6 +116,26 @@ function App() {
     return <LoginScreen onLoginSuccess={handleLoginSuccess} />;
   }
 
+  const params = new URLSearchParams(window.location.search);
+  const hasCode = params.has('code');
+
+  // Authenticated with Firebase but no Spotify connection yet (and not
+  // currently processing an OAuth redirect) - show a way to connect instead
+  // of hanging on the loading screen forever.
+  if (!spotifyToken && !hasCode) {
+    return (
+      <div className="error-screen">
+        <div className="error-content">
+          <h2>Connect Spotify</h2>
+          <p>Verbinde dich mit Spotify, um die Musikbibliothek zu laden.</p>
+          <button onClick={() => { window.location.href = spotifyService.getAuthUrl(); }}>
+            Mit Spotify verbinden
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   if (songs.length === 0) {
     return <LoadingScreen message="Loading music library..." />;
   }
