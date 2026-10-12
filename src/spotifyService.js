@@ -116,16 +116,19 @@ export const spotifyService = {
       const data = await response.json();
       console.log(`[spotify] ${playlistId} page ${page}: got ${data.items?.length ?? 0} items, next=${data.next}`);
 
-      // Extract track info
-      data.items.forEach(item => {
-        if (item.track && item.track.id) {
+      // Extract track info. Spotify's Feb 2026 API migration renamed the
+      // per-entry wrapper field from 'track' to 'item' on this endpoint -
+      // support both so it keeps working through/after the transition.
+      data.items.forEach(entry => {
+        const track = entry.item || entry.track;
+        if (track && track.id) {
           tracks.push({
-            id: item.track.id,
-            title: item.track.name,
-            artist: item.track.artists.map(a => a.name).join(', '),
-            uri: item.track.uri,
-            imageUrl: item.track.album?.images?.[0]?.url || null,
-            duration: item.track.duration_ms
+            id: track.id,
+            title: track.name,
+            artist: track.artists.map(a => a.name).join(', '),
+            uri: track.uri,
+            imageUrl: track.album?.images?.[0]?.url || null,
+            duration: track.duration_ms
           });
         }
       });
