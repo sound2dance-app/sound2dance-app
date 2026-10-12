@@ -3,9 +3,6 @@ const SPOTIFY_REDIRECT_URI = import.meta.env.VITE_SPOTIFY_REDIRECT_URI || 'http:
 const SCOPES = [
   'user-read-private',
   'user-read-email',
-  'streaming',
-  'user-read-playback-state',
-  'user-modify-playback-state',
   'playlist-read-public',
   'playlist-read-private'
 ];
