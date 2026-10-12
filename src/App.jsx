@@ -40,6 +40,14 @@ function App() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const code = params.get('code');
+    const oauthError = params.get('error');
+
+    if (oauthError) {
+      console.error('Spotify OAuth error:', oauthError);
+      setError(`Spotify-Login fehlgeschlagen: ${oauthError}`);
+      window.history.replaceState({}, document.title, window.location.pathname);
+      return;
+    }
 
     if (code && user && !spotifyToken) {
       handleSpotifyCallback(code);
