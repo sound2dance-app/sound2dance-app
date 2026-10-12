@@ -17,7 +17,12 @@ export const spotifyService = {
       scope: SCOPES.join(' '),
       show_dialog: true
     });
-    return `https://accounts.spotify.com/authorize?${params.toString()}`;
+    // URLSearchParams encodes spaces as '+'. Spotify's authorize endpoint
+    // does not reliably decode '+' back to a space in the scope param,
+    // causing a generic invalid_scope error for any multi-scope request.
+    // Use %20 instead, which is unambiguous.
+    const query = params.toString().replace(/\+/g, '%20');
+    return `https://accounts.spotify.com/authorize?${query}`;
   },
 
   // Get access token from auth code
