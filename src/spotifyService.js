@@ -3,9 +3,14 @@ const SPOTIFY_REDIRECT_URI = import.meta.env.VITE_SPOTIFY_REDIRECT_URI || 'http:
 const SCOPES = [
   'user-read-private',
   'user-read-email',
-  'playlist-read-public',
   'playlist-read-private'
 ];
+// Note: 'playlist-read-public' is a known-broken scope on Spotify's side as
+// of 2026 - requesting it always returns invalid_scope (confirmed via
+// Spotify's developer community forum, not something fixable on our end).
+// We don't actually need it: we fetch specific playlist IDs directly rather
+// than listing the user's own playlists, and Spotify allows reading public
+// playlists' tracks without any scope at all.
 
 export const spotifyService = {
   // Get authorization URL
