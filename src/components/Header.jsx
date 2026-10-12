@@ -1,6 +1,13 @@
+import { firebaseService } from '../firebaseService';
 import './Header.css';
 
 function Header({ totalSongs, level, points, streak }) {
+  const handleLogout = async () => {
+    if (!window.confirm('Wirklich ausloggen?')) return;
+    await firebaseService.signOut();
+    window.location.reload();
+  };
+
   return (
     <div className="header">
       <div className="stats">
@@ -18,9 +25,14 @@ function Header({ totalSongs, level, points, streak }) {
         </div>
       </div>
 
-      <div className="streak">
-        <span className="streak-flame">🔥</span>
-        <span className="streak-text">{streak} days</span>
+      <div className="header-right">
+        <div className="streak">
+          <span className="streak-flame">🔥</span>
+          <span className="streak-text">{streak} days</span>
+        </div>
+        <button onClick={handleLogout} className="logout-button" title="Logout">
+          ⎋
+        </button>
       </div>
     </div>
   );
