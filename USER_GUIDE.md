@@ -106,7 +106,7 @@ npm run preview
 Die App braucht diese Variablen um zu funktionieren:
 
 - `VITE_SPOTIFY_CLIENT_ID` = 422fdf951d294a9b8102792c47b1ac6c
-- `VITE_SPOTIFY_CLIENT_SECRET` = 2c7887fa5caa4003b1fe496e0874871c
+- `VITE_SPOTIFY_CLIENT_SECRET` = <your_client_secret_here>
 - `VITE_SPOTIFY_REDIRECT_URI` = https://sound2dance-app.vercel.app/callback (oder http://localhost:5173/callback für lokal)
 
 **WICHTIG:** Nie diese Secrets in Code committen! Sie sind in `.env.local` (nicht gepusht) und in Vercel Dashboard.

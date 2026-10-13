@@ -49,7 +49,7 @@ git push -u origin main
 8. **Environment Variables** setzen:
    ```
    VITE_SPOTIFY_CLIENT_ID = 422fdf951d294a9b8102792c47b1ac6c
-   VITE_SPOTIFY_CLIENT_SECRET = 2c7887fa5caa4003b1fe496e0874871c
+   VITE_SPOTIFY_CLIENT_SECRET = <your_client_secret_here>
    VITE_SPOTIFY_REDIRECT_URI = https://sound2dance-app.vercel.app/callback
    ```
    (Firebase Vars später wenn Firebase setup vorhanden ist)
