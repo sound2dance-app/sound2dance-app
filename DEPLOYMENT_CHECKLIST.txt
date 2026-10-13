@@ -71,7 +71,7 @@ SCHRITT 3: Vercel Deployment (MANUELL via Web)
    Value: 422fdf951d294a9b8102792c47b1ac6c
 
    Name: VITE_SPOTIFY_CLIENT_SECRET
-   Value: 2c7887fa5caa4003b1fe496e0874871c
+   Value: <your_client_secret_here>
 
    Name: VITE_SPOTIFY_REDIRECT_URI
    Value: https://sound2dance-app.vercel.app/callback
